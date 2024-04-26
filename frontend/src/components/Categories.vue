@@ -41,15 +41,20 @@ const { t } = useI18n({ useScope: "global" });
     :item-size="40"
     key-field="0"
     v-slot="{ item }">
-    <div
-      class="category"
-      @click="
-        props.navRouter().push({ name: 'CategoryWords', params: { id: item[0] } })
-      ">
+    <a
+      :href="
+        $router.resolve({ name: 'CategoryWords', params: { id: item[0] } }).href
+      "
+      @click.prevent="
+        props
+          .navRouter()
+          .push({ name: 'CategoryWords', params: { id: item[0] } })
+      "
+      class="category">
       <span>{{ item[1] }}</span>
       <div class="count">{{ item[2] }}</div>
       <ChevronRightIcon />
-    </div>
+    </a>
   </RecycleScroller>
 </template>
 

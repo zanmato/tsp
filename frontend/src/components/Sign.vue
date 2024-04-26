@@ -1,6 +1,7 @@
 <script setup>
-import { reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useHead } from "@unhead/vue";
 import ChevronLeftIcon from "bootstrap-icons/icons/chevron-left.svg?component";
 import HeartIcon from "bootstrap-icons/icons/suit-heart.svg?component";
 import HeartFillIcon from "bootstrap-icons/icons/suit-heart-fill.svg?component";
@@ -20,15 +21,24 @@ const router = useRouter();
 
 const state = reactive({ sign: {} });
 
+const title = ref("");
+
 const fetchSign = (id) => {
   fetch(`${settings.baseURL}/api/signs/${id}`)
     .then((response) => response.json())
     .then((data) => {
       state.sign = data;
+      title.value = data.words[0];
     });
 };
 
-fetchSign(router.currentRoute.value.params.id);
+useHead({
+  title
+});
+
+onMounted(() => {
+  fetchSign(router.currentRoute.value.params.id);
+});
 </script>
 <template>
   <div class="header">

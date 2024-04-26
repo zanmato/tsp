@@ -1,6 +1,7 @@
 <script setup>
 import { reactive, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useHead } from "@unhead/vue";
 import WordsIcon from "bootstrap-icons/icons/list.svg?component";
 import FavoritesIcon from "bootstrap-icons/icons/suit-heart.svg?component";
 import SubjectsIcon from "bootstrap-icons/icons/tag.svg?component";
@@ -20,6 +21,11 @@ const router = useRouter();
 const { stackRouter } = useStackRouter();
 
 const navRouter = () => (window.innerWidth < 768 ? router : stackRouter);
+
+useHead({
+  titleTemplate: "%s %separator %siteName",
+  templateParams: { separator: "|", siteName: "Teckenspråkslexikon" }
+});
 
 onMounted(() => {
   // Create the measurement node

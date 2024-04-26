@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { createRouter, createWebHistory } from "vue-router";
+import { createHead } from "@unhead/vue";
 import piniaPersist from "pinia-plugin-persist";
 import "./style.scss";
 
@@ -57,10 +58,15 @@ router.beforeEach(async (to, from, next) => {
   return next();
 });
 
-const app = createApp(App).use(router).use(i18n).use(pinia);
+const head = createHead();
+
+const app = createApp(App).use(router).use(i18n).use(pinia).use(head);
 
 // Change the main view to LargeStart if the window is larger or equal to 768px
-if (window.innerWidth >= LARGE_WINDOW_SIZE && window.location.pathname === "/") {
+if (
+  window.innerWidth >= LARGE_WINDOW_SIZE &&
+  window.location.pathname === "/"
+) {
   router.replace({ name: "LargeStart" });
 }
 

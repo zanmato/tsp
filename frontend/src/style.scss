@@ -17,6 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --text-color: #fff;
   --background-color: #000000;
   --separator-color: #54545899;
   --secondary-label-color: #ebebf599;
@@ -181,6 +182,7 @@ a {
   :root {
     color: #000;
     background-color: #ffffff;
+    --text-color: #000;
     --background-color: #ffffff;
     --separator-color: #3c3c434a;
     --secondary-label-color: #3c3c4399;
@@ -216,4 +218,10 @@ a {
   overflow: scroll;
   position: absolute;
   top: -9999px;
+}
+
+.vue-recycle-scroller {
+  a {
+    color: var(--text-color);
+  }
 }

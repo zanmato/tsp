@@ -126,13 +126,11 @@ const { t } = useI18n({ useScope: "global" });
     :item-size="40"
     key-field="0"
     v-slot="{ item }">
-    <div
-      class="word"
-      @click="router.push({ name: 'Sign', params: { id: item[1] } })">
+    <router-link :to="{ name: 'Sign', params: { id: item[1] } }" class="word">
       <span>{{ item[2] }}</span>
       <small class="unusual" v-if="item[3]">{{ t("unusualSign") }}</small>
       <ChevronRightIcon />
-    </div>
+    </router-link>
   </RecycleScroller>
 </template>
 
